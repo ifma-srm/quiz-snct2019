@@ -1,2 +1,2 @@
 # quiz-snct2019
-Quiz App for 2019th National Science and Technology Week
+App Quiz for National Science and Technology Week 2019
