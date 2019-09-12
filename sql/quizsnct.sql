@@ -1,0 +1,46 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES latin1 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='SYSTEM' */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE */;
+/*!40101 SET SQL_MODE='STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES */;
+/*!40103 SET SQL_NOTES='ON' */;
+
+
+DROP DATABASE IF EXISTS `quizsnct`;
+CREATE DATABASE `quizsnct` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `quizsnct`;
+CREATE TABLE `temas` (
+  `id_tema` int(11) NOT NULL auto_increment,
+  `tema` varchar(50) default NULL,
+  `data_cadastro` datetime default NULL,
+  `id_usuario` int(11) default '1',
+  PRIMARY KEY  (`id_tema`),
+  KEY `id_usuario` (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `temas` VALUES (1,'Cachoeiras do Itapecuru','2019-09-12 11:50:22',1);
+INSERT INTO `temas` VALUES (2,'Pedra Ca√≠da','2019-09-12 12:29:27',1);
+CREATE TABLE `usuarios` (
+  `id_usuario` int(11) NOT NULL default '1',
+  `nome` varchar(100) default NULL,
+  `email` varchar(100) default NULL,
+  `senha` varchar(40) default NULL,
+  PRIMARY KEY  (`id_usuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `usuarios` VALUES (1,'Sebasti„o Ricardo','admin','admin');
+
+ALTER TABLE `temas`
+  ADD FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
