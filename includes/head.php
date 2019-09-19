@@ -5,5 +5,7 @@
 
 <link rel="stylesheet" href="css/material.blue-red.min.css">
 <link rel="stylesheet" href="css/material.icon.css">
+<!-- <link rel="stylesheet" href="css/getmdl-select.min.css"> -->
 <link rel="stylesheet" href="css/quizsnct.css">
 <script src="js/material.min.js"></script>
+<!-- <script defer src="js/getmdl-select.min.js"></script> -->

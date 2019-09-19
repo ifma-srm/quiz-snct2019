@@ -30,7 +30,7 @@ Class DB {
 
 	}
 
-	public function query($sql) {
+	public function select($sql) {
 
 		$query = mysqli_query($this->con, $sql);
 
