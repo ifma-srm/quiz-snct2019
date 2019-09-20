@@ -14,7 +14,7 @@ $db = new DB();
 
 $temas = $db->select("select * from temas order by tema");
 
-$perguntas = $db->select("select p.*, t.tema, u.nome from perguntas p, temas t, usuarios u where p.id_tema = t.id_tema and p.id_usuario = u.id_usuario");
+$perguntas = $db->select("select p.*, t.tema, u.nome, count(id_resposta) as quantidade from perguntas p inner join temas t on (p.id_tema = t.id_tema) inner join usuarios u on (p.id_usuario = u.id_usuario) left outer join respostas r on (p.id_pergunta = r.id_pergunta) group by id_pergunta order by id_pergunta");
 
 if (!empty($_POST["pergunta"])) {
 
@@ -106,7 +106,7 @@ if (!empty($_POST["pergunta"])) {
                                 <th>Pergunta</th>
                                 <th>Cadastrado por</th>
                                 <th>Data de Cadastro</th>
-                                <th>Quantidade de Perguntas</th>                                                             
+                                <th>Respostas</th>                                                             
                             </tr>
                             </thead>
                             <tbody>
@@ -117,7 +117,11 @@ if (!empty($_POST["pergunta"])) {
                                     <td class="mdl-data-table__cell--center"><?=$item["pergunta"]?></td>
                                     <td class="mdl-data-table__cell--center"><?=$item["nome"]?></td>
                                     <td class="mdl-data-table__cell--center"><?=$item["data_cadastro"]?></td>
-                                    <td class="mdl-data-table__cell--center">0</td>
+                                    <td class="mdl-data-table__cell--center">
+
+                                        <a href="respostas.php?id_pergunta=<?=$item["id_pergunta"]?>">Respostas (<?=$item["quantidade"]?>)</a>
+
+                                    </td>
                                 </tr>
                                  <?php } ?>  
                                                               

@@ -30,6 +30,23 @@ Class DB {
 
 	}
 
+	public function update($table, $post, $condition) {
+
+		$items = array();
+
+		foreach($post as $key=>$item) {
+			$items[] = "$key = '" . $item . "'";
+		}
+
+		$fields = implode(", ", $items);
+
+		$sql = "update $table set $fields where $condition";
+	
+		return mysqli_query($this->con, $sql);
+
+
+	}
+
 	public function select($sql) {
 
 		$query = mysqli_query($this->con, $sql);
