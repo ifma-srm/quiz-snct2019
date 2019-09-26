@@ -2,54 +2,31 @@
 
 session_start();
 
-if (!$_SESSION["logado"]) {	
-	header("location: index.php");
-	exit;
-}
 
+require_once "classes/Quiz.class.php";
 
-require_once "lib/DB.class.php";
-
-$db = new DB();
-
-if (!empty($_POST["resposta"])) {
-
-
-    if ($_POST["quant_respostas"] == 0) {
-        $_POST["correta"] = 1;
-    }
-
-
-    $post = array('id_pergunta' => $_POST["id_pergunta"],
-                    'resposta' => $_POST["resposta"],
-                    'correta' => (empty($_POST["correta"]) ? 0:1)
-                );
-
-    if (!empty($_POST["correta"])) {
-
-        $db->update("respostas", array("correta"=> 0 ), "id_pergunta = " . $_POST["id_pergunta"]);
-
-    }
-
-
-
-    $db->save("respostas", $post);
-
-    header("location: respostas.php?id_pergunta=" . $_POST["id_pergunta"]);
-    exit;
-
-}
-
-
-if (!empty($_GET["id_resposta"])) {
-    $db->update("respostas", array("correta"=> 0 ), "id_pergunta = " . $_GET["id_pergunta"]);
-    $db->update("respostas", array("correta"=> 1 ), "id_resposta = " . $_GET["id_resposta"]);
-}
+$quiz = new Quiz();
+$quiz->checkSession();
 
 $id_pergunta = $_GET["id_pergunta"];
-$pergunta = $db->select("select * from perguntas where id_pergunta = $id_pergunta");
-$pergunta = $pergunta[0];
-$respostas = $db->select("select * from respostas where id_pergunta = $id_pergunta");
+
+if ($quiz->checkPost("resposta")) {
+
+    $id_pergunta = $_POST["id_pergunta"];
+
+    $quiz->postResposta();
+    $quiz->redirect("respostas.php?id_pergunta=" . $id_pergunta);
+
+}
+
+if ($quiz->checkGet("id_resposta")) {
+
+    $quiz->resetRespostas($id_pergunta);
+    $quiz->marcarCorreta($_GET["id_resposta"]);
+}
+
+$pergunta = $quiz->db->get("perguntas", "id_pergunta", $id_pergunta);
+$respostas = $quiz->listaRespostas($id_pergunta);
 
 ?>
 <!DOCTYPE html>

@@ -22,9 +22,8 @@ Class DB {
 
 		$insert = implode(", ", $post);
 
-
 		$sql = "insert into $table values (null, $insert)";
-	
+
 		return mysqli_query($this->con, $sql);
 
 
@@ -60,6 +59,14 @@ Class DB {
 		return $resultado;
 
 	}
+
+	public function get($table, $id, $value) {
+
+		$item = $this->select("select * from $table where $id = $value");
+		return $item[0];
+
+	}
+
 
 }
 

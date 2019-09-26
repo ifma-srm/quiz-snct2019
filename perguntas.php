@@ -2,34 +2,18 @@
 
 session_start();
 
-if (!$_SESSION["logado"]) {	
-	header("location: index.php");
-	exit;
-}
+require_once "classes/Quiz.class.php";
 
+$quiz = new Quiz();
 
-require_once "lib/DB.class.php";
+$quiz->checkSession();
 
-$db = new DB();
+$perguntas = $quiz->listaPerguntas();
 
-$temas = $db->select("select * from temas order by tema");
+if ($quiz->checkPost("pergunta")) {
 
-$perguntas = $db->select("select p.*, t.tema, u.nome, count(id_resposta) as quantidade from perguntas p inner join temas t on (p.id_tema = t.id_tema) inner join usuarios u on (p.id_usuario = u.id_usuario) left outer join respostas r on (p.id_pergunta = r.id_pergunta) group by id_pergunta order by id_pergunta");
-
-if (!empty($_POST["pergunta"])) {
-
-    $post = array('pergunta' => $_POST["pergunta"],
-                    'data_cadastro' => date("Y-m-d H:i:s"),
-                    'id_usuario' => 1,
-                    'id_tema' => $_POST["tema"]
-                );
-
-
-
-    $db->save("perguntas", $post);
-
-    header("location: perguntas.php");
-    exit;
+    $quiz->postPergunta();
+    $quiz->redirect("perguntas.php");
 
 }
 
@@ -64,7 +48,7 @@ if (!empty($_POST["pergunta"])) {
                                 <select class="mdl-textfield__input" id="tema" name="tema">
                                   <option></option>
 
-                                  <?php foreach($temas as $key=>$item) { ?>
+                                  <?php foreach($quiz->dropdownTemas() as $key=>$item) { ?>
 
                                     <option value="<?=$item["id_tema"]?>"><?=$item["tema"]?></option>
 
