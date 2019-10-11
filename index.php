@@ -13,9 +13,10 @@
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="admin/css/material.blue-red.min.css">
+<link rel="stylesheet" href="assets/material.lime-orange.min.css">
+
 <link rel="stylesheet" href="admin/css/material.icon.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/style.css">
 <script src="admin/js/material.min.js"></script>
 </head>
 <body>
@@ -28,34 +29,36 @@
             	
             
          	</div>	
-	          <div class="mdl-card mdl-cell mdl-cell--8-col">
+	          <div class="mdl-card mdl-cell mdl-cell--8-col quiz">
 
 	          	<div class="mdl-card__title">
 				    <h2 class="mdl-card__title-text">Escolha um Tema</h2>
 				</div>
 
-	            <div class="mdl-card__supporting-text">
+	            <div class="mdl-card__supporting-text themes">
 	              	
+	              	<div>
 	            	<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
 					  <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
 					  <span class="mdl-radio__label">Cachoeiras do Itapecuru</span>
-					</label>
-					<br />
+					</label>				
 					
 					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
 					  <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
 					  <span class="mdl-radio__label">Poço Azul</span>
 					</label>
-					<br />
+					</div>
+					<div>
 					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
 					  <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3">
 					  <span class="mdl-radio__label">Pedra Caída</span>
 					</label>
-					<br />
+					
 					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
 					  <input type="radio" id="option-4" class="mdl-radio__button" name="options" value="4">
 					  <span class="mdl-radio__label">Cachoeira Esmeralda</span>
 					</label>
+					</div>
 
 	            </div>
 	            <div class="mdl-card__supporting-text">
