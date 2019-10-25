@@ -1,0 +1,291 @@
+body {
+	background: url(../images/waterfall.jpg) bottom / cover;	
+}
+
+
+body .demo-blog {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+}
+
+.something-else::after {
+  content: '';
+  width: 100%; 
+  height: 100%;
+  background-color: black; 
+  opacity: 0.8; 
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+h3.points {
+  color:green;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px 20px 0px 20px;
+  font-size: 220%;
+  background: #FFFF8C;
+  letter-spacing: -2px;
+
+}
+
+h3.points #score {color:red;display: inline-block;min-width: 50px;}
+
+.something-else {
+  background: transparent;
+  max-height: 400px;
+  z-index: 10;
+}
+
+.something-else img {
+  width: 100%;
+ 
+}
+
+.demo-blog .quiz::after {
+	content: '';
+	width: 100%; 
+	height: 100%;
+	background-color: black; 
+	opacity: 0.7; 
+	position: absolute; 
+	top: 0; 
+	left: 0;
+	z-index: -1;
+	border-radius: 10px;
+}
+.demo-blog .quiz {
+	background: transparent;
+    opacity: 1.0;
+
+}
+
+.demo-blog .play strong, .demo-blog .play em {
+  color: rgb(205,220,57);
+}
+
+.demo-blog .quiz .mdl-card__title-text {
+  color: white;
+
+}
+
+.demo-blog .play .mdl-card__title-text {
+  color: white;
+  font-size: 18px;
+
+
+}
+
+.answers ul {
+  list-style: none;
+  margin-left:0;
+  padding-left: 25px;
+}
+
+.answers ul li {
+  margin-bottom: 13px;
+}
+
+.answers ul li a {
+  background: white;
+  color:black;
+  display: block;
+  padding:10px 15px;
+  font:normal 24px arial;
+  text-decoration: none;
+  border-radius: 10px;
+  box-shadow: 1px 4px 0px orange;
+  transition: padding-left 0.2s ease-out, background 0.5s ease-out, color 0.5s ease-in;
+}
+
+h4.rank-title {
+  margin: 0 auto;
+  color: yellow;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+table.ranking {
+
+  width: 100%;
+  margin-left:12px;
+  border-radius: 10px;
+ 
+}
+table.ranking thead {
+ 
+  display: block;
+  width: 100%;
+  
+}
+
+table.ranking thead th {
+  font-size: 18px;
+}
+
+table.ranking tbody {
+
+  height: 200px !important;  
+  overflow: auto !important;
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  
+}
+
+table.ranking th {
+
+}
+
+.total {
+  background: yellow;
+  display: inline-block;
+  color:blue;
+  padding:5px 10px;
+  border-radius: 5px;
+}
+
+@keyframes correct {
+  0%{
+    background-color: #FFFF8C;         
+  }
+  100%{
+    background-color: rgb(105,240,57);         
+  }
+}
+
+@keyframes incorrect {
+  0%{
+    background-color: #FFFF8C;         
+  }
+  100%{
+    background-color: #FFCC00;         
+  }
+}
+
+.correct {
+  background: rgb(105,240,57) !important;
+  box-shadow: 1px 4px 0px green !important;
+  color:green !important;
+  font-weight: bold !important;
+  animation: correct 0.2s 15;
+}
+
+.incorrect {
+  background: rgb(245,90,90) !important;
+  box-shadow: 1px 4px 0px #900 !important;
+  color:#900 !important;
+  font-weight: bold !important; 
+}
+
+.errou {
+  background: #FC0 !important;  
+  color:#000 !important;  
+  box-shadow: 1px 4px 0px #F90 !important;
+  animation: incorrect 0.2s 15;
+}
+
+.disabled a {
+  background: #666 !important;  
+  color:silver !important;
+  box-shadow: 1px 4px 0px #999 !important;
+
+}
+
+
+.answers ul li a:hover {
+  background: #FFFF8C;
+  padding-left:25px;
+}
+
+#userinfo {justify-content: center !important;}
+
+.demo-blog .questions {
+  color:white;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: bold;  
+  text-align: center;
+  margin-left: 12px;
+  
+
+}
+
+.demo-blog .quiz .mdl-card__title-text {
+	display: block;
+}
+
+.demo-blog .quiz label {
+	color: white;
+}
+
+.demo-blog .quiz form {
+	
+	display: flex;
+	flex-direction: row;	
+	justify-content: space-between;
+	align-items: center;
+	align-content: space-between;
+
+}
+
+.demo-blog .quiz button {
+	
+	
+	align-items: right;
+	
+}
+
+.demo-blog .quiz input {
+	color: white;
+	border-color: white;
+
+}
+
+.demo-blog .quiz .right {
+	margin-right:0;
+}
+
+.demo-blog .quiz .mdl-radio__outer-circle {
+	border-color: white;
+}
+
+.demo-blog .demo-blog__posts {
+  max-width: 900px;
+  
+}
+
+.demo-blog.mdl-layout .mdl-layout__content {
+  padding-top: 100px;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
+
+.demo-blog .themes {	
+	display: flex;
+	flex-direction: column;	
+
+}
+
+.demo-blog .themes div {	
+  margin-bottom: 10px;
+}
+
+.demo-blog .themes div label {	
+  
+  width: 49%;
+	margin-bottom: 10px;
+}
+
+
+/* ABAIXO É ORIGINAL */
+
+
+/* Fixes for IE 10 */
+.mdl-grid {
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}

@@ -1,5 +1,10 @@
 <?php
 
+require_once "admin/config.php";
+require_once PATH."classes/Quiz.class.php";
+
+$quiz = new Quiz();
+$temas = $quiz->dropdownTemas();
 
 ?>
 <!DOCTYPE html>
@@ -11,12 +16,12 @@
 
 <title>Quiz SNCT</title>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="assets/material.lime-orange.min.css">
+<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> -->
+<link rel="stylesheet" href="assets/css/material.lime-orange.min.css">
 
 <link rel="stylesheet" href="admin/css/material.icon.css">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/css/style.css">
 <script src="admin/js/material.min.js"></script>
 </head>
 <body>
@@ -24,9 +29,10 @@
 	<div class="demo-blog mdl-layout mdl-js-layout has-drawer is-upgraded">
       <main class="mdl-layout__content">
         <div class="demo-blog__posts mdl-grid">
-        	<div class="mdl-card something-else mdl-cell mdl-cell--8-col mdl-cell--4-col-desktop">
-           
-            	
+        	<div class="mdl-card mdl-cell mdl-cell--4-col something-else">
+           		
+			    <img src="assets/images/3.png" />
+				
             
          	</div>	
 	          <div class="mdl-card mdl-cell mdl-cell--8-col quiz">
@@ -36,37 +42,34 @@
 				</div>
 
 	            <div class="mdl-card__supporting-text themes">
-	              	
+
+	            	<?php foreach($temas as $key=>$item) { ?>
+                
+	              	<?php if ($key == 0 or $key % 2 == 0) { ?>
 	              	<div>
-	            	<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-1">
-					  <input type="radio" id="option-1" class="mdl-radio__button" name="options" value="1" checked>
-					  <span class="mdl-radio__label">Cachoeiras do Itapecuru</span>
+	              	<?php } ?>	
+	            	
+	            	<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-<?=$item["id_tema"]?>">
+					  <input type="radio" id="option-<?=$item["id_tema"]?>" class="mdl-radio__button" name="options" value="<?=$item["id_tema"]?>"<?php if ($key == 0) {echo "checked";}?> onclick="setTema(<?=$item["id_tema"]?>)">
+					  <span class="mdl-radio__label"><?=$item["tema"]?></span>
 					</label>				
 					
-					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-2">
-					  <input type="radio" id="option-2" class="mdl-radio__button" name="options" value="2">
-					  <span class="mdl-radio__label">Poço Azul</span>
-					</label>
-					</div>
-					<div>
-					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-3">
-					  <input type="radio" id="option-3" class="mdl-radio__button" name="options" value="3">
-					  <span class="mdl-radio__label">Pedra Caída</span>
-					</label>
 					
-					<label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-4">
-					  <input type="radio" id="option-4" class="mdl-radio__button" name="options" value="4">
-					  <span class="mdl-radio__label">Cachoeira Esmeralda</span>
-					</label>
-					</div>
+					<?php if ($key == count($temas)-1 or $key % 2 == 1) { ?>
+	              	</div>
+	              	<?php } ?>	
+					
+
+					<?php } ?>
 
 	            </div>
 	            <div class="mdl-card__supporting-text">
 	              
-	              <form action="#">
+	             	 <form action="quiz.php" method="post">
 					  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-					    <input class="mdl-textfield__input" type="text" id="nome">
-					    <label class="mdl-textfield__label" for="sample4">Qual é o seu nome?</label>
+					    <input class="mdl-textfield__input" name="nome" type="text" id="nome">
+					    <input type="hidden" id="tema" name="id_tema" value="<?=$temas[0]["id_tema"]?>">
+					    <label class="mdl-textfield__label" for="nome">Qual é o seu nome?</label>
 					    <span class="mdl-textfield__error">Esta informação é obrigatória!</span>
 
 					  </div>
@@ -83,6 +86,7 @@
           
    
     <script src="admin/js/material.min.js"></script>
+    <script src="assets/js/quizsnct.js"></script>
   </body>
   
 </html>

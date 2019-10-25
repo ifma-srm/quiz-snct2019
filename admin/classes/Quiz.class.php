@@ -1,7 +1,6 @@
 <?php
 
-require_once "config.php";
-require_once "lib/DB.class.php";
+require_once PATH."lib/DB.class.php";
 
 class Quiz {
 
@@ -61,6 +60,25 @@ class Quiz {
 
 	}
 
+	public function getRankingPorTema($id) {
+
+		return $this->db->select("select * from participantes p inner join temas t on (t.id_tema = p.id_tema) where t.id_tema = $id order by pontos desc");
+
+	}
+
+	public function perguntasPorTema($id_tema) {
+
+		$perguntas = $this->db->select("select * from perguntas where id_tema = $id_tema order by rand() limit 3");
+
+		foreach($perguntas as $key=>$item) {
+			$respostas = $this->db->select("select * from respostas where id_pergunta = " . $item["id_pergunta"]);
+			$perguntas[$key]["respostas"] = $respostas;
+		}
+
+		return $perguntas;
+
+	}
+
 	public function resetRespostas($id_pergunta) {
 
 		$this->db->update("respostas", array("correta"=> 0 ), "id_pergunta = $id_pergunta");
@@ -80,6 +98,20 @@ class Quiz {
                 );
 
    		$this->db->save("temas", $post);
+
+	}
+
+	public function postParticipante() {
+
+		 $post = array('id_tema' => $_POST["id_tema"],
+                    'nome' => $_POST["nome"],
+                    'potos' => 0,
+                    'data_participacao' => date("Y-m-d H:i:s")
+                );
+
+   		$this->db->save("participantes", $post);
+
+   		return $this->db->getLastInsertId();
 
 	}
 

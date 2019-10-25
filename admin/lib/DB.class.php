@@ -1,7 +1,5 @@
 <?php
 
-require_once "config.php";
-
 Class DB {
 
 	var $con = null;
@@ -27,6 +25,10 @@ Class DB {
 		return mysqli_query($this->con, $sql);
 
 
+	}
+
+	public function getLastInsertId() {
+		return mysqli_insert_id($this->con);
 	}
 
 	public function update($table, $post, $condition) {
