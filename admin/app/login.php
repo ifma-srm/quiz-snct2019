@@ -8,6 +8,8 @@
 
 			<h3 class="mdl-layout-title">Informe os dados abaixo para entrar no sistema</h3>
 
+			<p style="color:red;text-align: center;"><?=$_SESSION["flash_login_error"]; unset($_SESSION["flash_login_error"])?></p>
+
 		  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 		    <input class="mdl-textfield__input" name="email" type="text" id="log">
 		    <label class="mdl-textfield__label" for="log">Nome de Usuário (E-mail ou ID)</label>

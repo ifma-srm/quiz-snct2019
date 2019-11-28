@@ -5,6 +5,7 @@ require_once PATH."lib/DB.class.php";
 class Quiz {
 
 	var $db = null;
+	private $salt = "2cd965465f3de6458d8e8918b15ce242";
 
 	public function __construct() {
 
@@ -164,6 +165,22 @@ class Quiz {
 
 	}
 
+	public function login() {
+
+		$email = $_POST["email"];
+		$senha = $_POST["senha"];
+
+		$hash = md5($email . $this->salt . $senha);
+
+		$login = $this->db->select("select * from usuarios where email = '$email' and senha = '$hash'");
+
+		if (count($login) > 0) {
+			return $login[0];
+		} else {
+			return false;
+		}
+
+	}
 
 
 }

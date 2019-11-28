@@ -1,7 +1,8 @@
 <?php
 
 session_start();
-
+require_once "config.php";
+require_once "classes/Quiz.class.php";
 
 if ($_GET["logout"] == 1) {
 	unset($_SESSION["logado"]);
@@ -9,7 +10,19 @@ if ($_GET["logout"] == 1) {
 
 if (!empty($_POST)) {
 
-	$_SESSION["logado"] = true;
+
+	$quiz = new Quiz();
+
+	$login = $quiz->login();
+
+	if (!$login) {
+		$_SESSION["flash_login_error"] = "Falha no login. Dados de acesso incorretos!";
+	} else {
+		$_SESSION["logado"] = true;
+		$_SESSION["username"] = $login["nome"];
+
+	}
+	
 	header("location: index.php");
 	exit;
 }

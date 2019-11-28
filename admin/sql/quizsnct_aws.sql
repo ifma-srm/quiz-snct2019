@@ -7,6 +7,10 @@
 # Structure for table "perguntas"
 #
 
+use quizsnct;
+
+set foreign_key_checks = 0;
+
 DROP TABLE IF EXISTS `perguntas`;
 CREATE TABLE `perguntas` (
   `id_pergunta` int(11) NOT NULL AUTO_INCREMENT,

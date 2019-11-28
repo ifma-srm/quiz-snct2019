@@ -7,7 +7,7 @@
 	      <div class="mdl-layout-spacer"></div>
 	      <!-- Navigation. We hide it in small screens. -->
 	      <nav class="mdl-navigation mdl-layout--large-screen-only">		        
-	        <span class="mdl-navigation__link" href="">Seja bem-vindo(a), Fulano(a)</span>
+	        <span class="mdl-navigation__link" href="">Seja bem-vindo(a), <?=$_SESSION["username"]?></span>
 	        <a class="mdl-navigation__link" href="index.php?logout=1">Sair</a>
 	      </nav>
 
